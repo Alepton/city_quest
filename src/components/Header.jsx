@@ -1,9 +1,9 @@
 import React from "react";
-import "./Header.css";
+import c from './Header.module.css';
 
 const Header = () => {
   return (
-    <header className="header">
+    <header className={c.header}>
       <img src="https://cdn.logo.com/hotlink-ok/logo-social-sq.png"></img>
     </header>
   );
