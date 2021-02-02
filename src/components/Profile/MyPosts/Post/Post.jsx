@@ -1,11 +1,11 @@
 import React from "react";
 import c from "./Post.module.css";
 
-const Post = () => {
+const Post = (props) => {
   return (
     <div className={c.item}>
       <img src="http://archilab.online/images/1/123.jpg" />
-      post 1
+      { props.massage }
       <div>
         <span>like</span>
       </div>

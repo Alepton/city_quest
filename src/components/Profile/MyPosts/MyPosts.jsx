@@ -11,15 +11,10 @@ const MyPosts = () => {
         <button>Add post</button>
         <button>Remove</button>
       </div>
-      <div className={c.item}>
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+      <div className={c.posts}>
+        <Post massage='Hi, how are you?' />
+        <Post massage="It's my first post"/>
+
       </div>
     </div>
   );
