@@ -7,11 +7,9 @@ const Post = (props) => {
       <img src="http://archilab.online/images/1/123.jpg" />
       { props.massage }
       <div>
-        <span>like</span>
+        <span>like</span> { props.likesCount}
       </div>
-      <div>
-        <span>dislike</span>
-      </div>
+
     </div>
   );
 };

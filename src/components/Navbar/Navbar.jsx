@@ -1,14 +1,14 @@
 import React from "react";
 import c from './Navbar.module.css';
 
-const Navbar = () => {
+const Navbar =  () => {
   return (
     <nav className={c.nav}>
         <div className={c.item}>
-          <a> Profile</a>
+          <a href="/Profile"> Profile</a>
         </div>
         <div className={c.item}>
-          <a> Messages</a>
+          <a href="/Messages"> Messages</a>
         </div>
         <div className={c.item}>
           <a> News</a>
