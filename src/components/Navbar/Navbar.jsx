@@ -8,16 +8,19 @@ const Navbar =  () => {
           <a href="/Profile"> Profile</a>
         </div>
         <div className={c.item}>
+          <a href="/Dialogs"> Dialogs</a>
+        </div>
+        <div className={c.item}>
           <a href="/Messages"> Messages</a>
         </div>
         <div className={c.item}>
-          <a> News</a>
+          <a href="/News"> News</a>
         </div>
         <div className={c.item}>
-          <a> Music</a>
+          <a href="/Music"> Music</a>
         </div>
         <div className={c.item}>
-          <a> Settings</a>
+          <a href="/Settings"> Settings</a>
         </div>
       </nav>
   );
