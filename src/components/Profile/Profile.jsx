@@ -11,7 +11,7 @@ const Profile = () => {
         <MyPosts />
       </div>
     </div>
-  )
+  );
 };
 
 export default Profile;
