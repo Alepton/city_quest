@@ -7,6 +7,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -46,7 +53,13 @@
       <workItem from="1612892949850" duration="450000" />
       <workItem from="1612893415584" duration="5806000" />
       <workItem from="1612972160262" duration="2103000" />
-      <workItem from="1612974703871" duration="5660000" />
+      <workItem from="1612974703871" duration="6461000" />
+      <workItem from="1613058587116" duration="307000" />
+      <workItem from="1613058989630" duration="64000" />
+      <workItem from="1613059145157" duration="340000" />
+      <workItem from="1613059630604" duration="5000" />
+      <workItem from="1613059789806" duration="382000" />
+      <workItem from="1613060209403" duration="596000" />
     </task>
     <servers />
   </component>
@@ -70,5 +83,16 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1612893062180" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/redux/state.js</url>
+          <line>38</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
