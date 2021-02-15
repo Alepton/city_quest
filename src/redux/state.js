@@ -5,10 +5,10 @@ let state = {
         posts: [
             {id: 1, message: 'Hi, how are you?', likesCount: 12},
             {id: 2, message: "It's my first post", likesCount: 20},
-            {id: 2, message: "It's my first post", likesCount: 20},
-            {id: 2, message: "It's my first post", likesCount: 20},
-            {id: 2, message: "It's my first post", likesCount: 20},
-            {id: 2, message: "It's my first post", likesCount: 20}
+            {id: 3, message: "It's my first post", likesCount: 20},
+            {id: 4, message: "It's my first post", likesCount: 20},
+            {id: 5, message: "It's my first post", likesCount: 20},
+            {id: 6, message: "It's my first post", likesCount: 20}
         ]
     },
 
@@ -28,8 +28,11 @@ let state = {
             {id: 4, message: 'Yo'}
         ]
     }
+}
 
-
+export let addPost = (postMassege) => {
+    let newPost = {id: 7, message: postMassege, likesCount: 0};
+    state.profilePage.posts.push(newPost);
 }
 
 export default state;
