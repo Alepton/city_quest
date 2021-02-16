@@ -31,9 +31,16 @@ let state = {
     }
 }
 
-export let addPost = (postMessege) => {
-    let newPost = {id: 7, message: postMessege, likesCount: 0};
+export let addPost = () => {
+    let newPost = {id: 7, message: state.profilePage.newPostText, likesCount: 0};
+
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = '';
+    rerenderEntireTree (state);
+}
+
+export let updateNewPostText = (newText) => {
+    state.profilePage.newPostText = newText;
     rerenderEntireTree (state);
 }
 
