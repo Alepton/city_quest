@@ -6,7 +6,7 @@ import { sendMessageCreator, updateNewMessageBodyCreator, updateNewPostTextActio
 
 const Dialogs = (props) => {
 
-  let state = props.store.getState().dialogsPage;
+  let state = props.dialogsPage;
 
   let dialogsElement = state.dialogs.map((d) => (
     <DialogItem name={d.name} id={d.id} />
@@ -16,19 +16,15 @@ const Dialogs = (props) => {
   ));
   let newMessagesBody = state.newMessagesBody;
 
-  let newPostEl = React.createRef();
-  let addMessage = () => {
-    let text = newPostEl.current.value;
-    alert(text);
-  };
+
 
   let onSendMessageClick = () => {
-      props.store.dispatch (sendMessageCreator());
+      props.sendMessage();
   }
 
   let onNewMessageChange = (e) => {
       let body = e.target.value;
-      props.store.dispatch (updateNewMessageBodyCreator(body));
+      props.updateNewMessageBody(body);
   }
 
   return (
@@ -42,14 +38,6 @@ const Dialogs = (props) => {
                            placeholder='Enter yoyr message'></textarea> </div>
             <div><button onClick={ onSendMessageClick }>Send</button></div>
           </div>
-      </div>
-
-      <div>
-        <textarea ref={newPostEl}></textarea>
-      </div>
-
-      <div>
-        <button onClick={addMessage}>Add Message</button>
       </div>
     </div>
   );
