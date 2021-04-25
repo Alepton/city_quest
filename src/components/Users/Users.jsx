@@ -14,6 +14,14 @@ class Users extends React.Component {
       });
   }
 
+  componentDidMount() {
+    //аякс запрос
+    axios.get("https://social-network.samuraijs.com/api/1.0/users")
+      .then(response => {
+        this.props.setUsers (response.data.items);
+      });
+  }
+
   render() {
     return (
       <div>
