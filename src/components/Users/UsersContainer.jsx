@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { followActionCreator, setUsersActionCreator, unfollowActionCreator, setCurrentPageActionCreator, setTotalUsersCountActionCreator, toggleIsFetchingActionCreator } from '../../redux/users-reducer';
+import { follow, setUsers, unfollow, setCurrentPage, setTotalUsersCount, toggleIsFetching } from '../../redux/users-reducer';
 import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
 
@@ -62,7 +62,7 @@ let mapStateToProps = (state) => {
 }
 
 //функция служит что бы передавать дочерней компоненьте через пропсы колбэки
-let mapDispatchToProps = (dispatch) => {
+/*let mapDispatchToProps = (dispatch) => {
   return {
     follow: (userId) => {
       dispatch (followActionCreator (userId) );
@@ -89,6 +89,13 @@ let mapDispatchToProps = (dispatch) => {
     }
 
   }
-}
+}*/
 
-export default connect (mapStateToProps, mapDispatchToProps) (UsersContainer);
+export default connect (mapStateToProps, {
+  follow,
+  unfollow,
+  setUsers,
+  setCurrentPage,
+  setTotalUsersCount,
+  toggleIsFetching
+}) (UsersContainer);
