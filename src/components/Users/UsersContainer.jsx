@@ -8,8 +8,9 @@ import Preloader from '../common/Preloader/Preloader';
 class UsersContainer extends React.Component {
   componentDidMount() {
     this.props.toggleIsFetching(true);
-    axios.get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
+      withCredentials: true,
+    }
       )
       .then((response) => {
         this.props.toggleIsFetching(false);
@@ -23,7 +24,9 @@ class UsersContainer extends React.Component {
     this.props.toggleIsFetching(true);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`
+        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {
+          withCredentials: true,
+        }
       )
       .then((response) => {
         this.props.setUsers(response.data.items);
@@ -61,34 +64,6 @@ let mapStateToProps = (state) => {
 }
 
 //функция служит что бы передавать дочерней компоненьте через пропсы колбэки
-/*let mapDispatchToProps = (dispatch) => {
-  return {
-    follow: (userId) => {
-      dispatch (followActionCreator (userId) );
-    },
-
-    unfollow: (userId) => {
-      dispatch (unfollowActionCreator (userId) );
-    },
-
-    setUsers: (users) => {
-      dispatch (setUsersActionCreator (users) );
-    },
-
-    setCurrentPage: (pageNumber) => {
-      dispatch (setCurrentPageActionCreator (pageNumber))
-    },
-
-    setTotalUsersCount: (totalCount) => {
-      dispatch (setTotalUsersCountActionCreator (totalCount))
-    },
-
-    toggleIsFetching: (isFetching) => {
-      dispatch (toggleIsFetchingActionCreator (isFetching));
-    }
-
-  }
-}*/
 
 export default connect (mapStateToProps, {
   follow,
