@@ -8,6 +8,7 @@ import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
 import { usersAPI } from '../../api/api';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
 
 class UsersContainer extends React.Component {
@@ -67,18 +68,17 @@ let mapStateToProps = (state) => {
   }
 }
 
-//функция служит что бы передавать дочерней компоненьте через пропсы колбэки
-
-/*let withRedirect = withAuthRedirect(UsersContainer);
-export default connect (mapStateToProps, {
-  follow, unfollow, setCurrentPage,
-  toggleFollowingInProgress, getUsers
-}) (withRedirect);
-первый способ*/
-
-//второй способ сокращенный
+/*
 let withRedirect = withAuthRedirect(UsersContainer);
 export default withAuthRedirect (connect (mapStateToProps, {
   follow, unfollow, setCurrentPage,
   toggleFollowingInProgress, getUsers
-}) (UsersContainer));
+}) (UsersContainer));*/
+
+export default compose (
+  withAuthRedirect,
+  connect (mapStateToProps, {
+    follow, unfollow, setCurrentPage,
+    toggleFollowingInProgress, getUsers
+  })
+)(UsersContainer);
