@@ -1,7 +1,31 @@
 import React from "react";
+import { Field, reduxForm } from "redux-form";
+import { maxLengthCreator, requiredField } from "../../../utils/validators/validators";
+import { Textarea } from "../../common/FormControls/FormControls";
 import c from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
+const maxLength10 = maxLengthCreator(10);
+
+const AddNewPostForm = (props) => {
+  return (
+    <form onSubmit={props.handleSubmit}>
+      <div>
+        <Field
+          placeholder="Yuor post"
+          name={"newPostText"}
+          component={Textarea}
+          validate={[requiredField, maxLength10]}
+        />
+      </div>
+      <div>
+        <button>Add post</button>
+      </div>
+    </form>
+  );
+};
+
+let AddNewPostFormRedux = reduxForm({form: "ProfileAddNewPostForm"})(AddNewPostForm)
 
 
 const MyPosts = (props) => {
@@ -11,34 +35,21 @@ const MyPosts = (props) => {
 
   let newPostEl = React.createRef();
 
-  let onAddPost = () => {
-    props.addPost();
-  };
-
-  let onPostChange = () => {
-    let text = newPostEl.current.value;
-    props.updateNewPostText(text)
+  let onAddPost = (values) => {
+    props.addPost(values.newPostText);
   };
 
   return (
     <div className={c.postsBlock}>
       <h3>My posts</h3>
-      <div>
-        <div>
-          <textarea
-            onChange={onPostChange}
-            ref={newPostEl}
-            value={props.newPostText}
-          />
-        </div>
-        <div>
-          <button onClick={onAddPost}>Add post</button>
-          <button>Remove</button>
-        </div>
-      </div>
+      <AddNewPostFormRedux onSubmit={onAddPost} />
       <div className={c.posts}>{postsElement}</div>
     </div>
   );
 };
+
+
+
+
 
 export default MyPosts;
