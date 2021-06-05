@@ -5,8 +5,8 @@ const SET_USER_DATA = "SET_USER_DATA"; //установить пользоват
 //Начальные данные после загрузки
 let initialState = {
   Userid: null,
-  login: null,
   email: null,
+  login: null,
   isAuth: false,
 };
 
@@ -15,8 +15,8 @@ const authReducer = (state = initialState, action) => {
     case SET_USER_DATA:
       return {
         ...state,
-        ...action.data,
-        isAuth: true
+        ...action.payload,
+
       };
 /*
     case TOGGLE_IS_FETCHING: {
@@ -31,23 +31,35 @@ const authReducer = (state = initialState, action) => {
   }
 };
 
-export const setAuthUserData = (userId, login, email) => ({
-  type: SET_USER_DATA, data: {userId, login, email},
+export const setAuthUserData = (userId, email, login, isAuth) => ({
+  type: SET_USER_DATA, payload: {userId, email, login, isAuth}
 });
 
 export const getAuthUserData = () => (dispatch) => {
   authAPI.me().then((response) => {
     if (response.data.resultCode === 0) {
-      let {id, login, email} = response.data.data;
-      dispatch (setAuthUserData(id, login, email));
+      let {id, email, login} = response.data.data;
+      dispatch (setAuthUserData(id, email, login, true));
     }
   });
 }
 
-/*
-export const toggleIsFetching = (isFetching) => ({
-  type: TOGGLE_IS_FETCHING,
-  isFetching,
-});
-*/
+//создаем thunk для логинизации на сервере из приложения. Задача этой санки логиниться
+export const login = (email, password, rememberMe) => (dispatch) => {
+  authAPI.login(email, password, rememberMe).then((response) => {
+    if (response.data.resultCode === 0) {
+      dispatch (getAuthUserData())
+    }
+  });
+}
+
+//создаем thunk для вылогинизации
+export const logout = () => (dispatch) => {
+  authAPI.logout().then((response) => {
+    if (response.data.resultCode === 0) {
+      dispatch (setAuthUserData(null, null, null, false));
+    }
+  });
+}
+
 export default authReducer;
