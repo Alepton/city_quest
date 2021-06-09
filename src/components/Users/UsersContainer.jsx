@@ -76,7 +76,7 @@ export default withAuthRedirect (connect (mapStateToProps, {
 }) (UsersContainer));*/
 
 export default compose (
-  withAuthRedirect,
+  // withAuthRedirect,
   connect (mapStateToProps, {
     follow, unfollow, setCurrentPage,
     toggleFollowingInProgress, getUsers
