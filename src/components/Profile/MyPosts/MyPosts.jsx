@@ -1,6 +1,10 @@
 import React from "react";
+import { Component } from "react";
 import { Field, reduxForm } from "redux-form";
-import { maxLengthCreator, requiredField } from "../../../utils/validators/validators";
+import {
+  maxLengthCreator,
+  requiredField,
+} from "../../../utils/validators/validators";
 import { Textarea } from "../../common/FormControls/FormControls";
 import c from "./MyPosts.module.css";
 import Post from "./Post/Post";
@@ -25,31 +29,41 @@ const AddNewPostForm = (props) => {
   );
 };
 
-let AddNewPostFormRedux = reduxForm({form: "ProfileAddNewPostForm"})(AddNewPostForm)
+let AddNewPostFormRedux = reduxForm({ form: "ProfileAddNewPostForm" })(
+  AddNewPostForm
+);
 
+const MyPosts = React.memo(props => {
 
-const MyPosts = (props) => {
-  let postsElement = props.posts.map((p) => (
-    <Post message={p.message} likesCount={p.likesCount} />
-  ));
+/*
+class MyPosts extends Component {
+  //спрашивает у компонента: если следующие пропсы и следующий стэйт не равны текущим, то делай рендер (если равны то компонент не переисовывается)
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps != this.props || nextState != this.state;
+  }
+  то же самое можно сделать если использовать PureComponent
+  class MyPosts extends PureComponent
+  в этом случае все будет автоматически
+  */
 
-  let newPostEl = React.createRef();
+    let postsElement = props.posts.map((p) => (
+      <Post message={p.message} likesCount={p.likesCount} />
+    ));
 
-  let onAddPost = (values) => {
-    props.addPost(values.newPostText);
-  };
+    let newPostEl = React.createRef();
 
-  return (
-    <div className={c.postsBlock}>
-      <h3>My posts</h3>
-      <AddNewPostFormRedux onSubmit={onAddPost} />
-      <div className={c.posts}>{postsElement}</div>
-    </div>
-  );
-};
+    let onAddPost = (values) => {
+      props.addPost(values.newPostText);
+    };
 
-
-
+    return (
+      <div className={c.postsBlock}>
+        <h3>My posts</h3>
+        <AddNewPostFormRedux onSubmit={onAddPost} />
+        <div className={c.posts}>{postsElement}</div>
+      </div>
+    );
+  });
 
 
 export default MyPosts;
