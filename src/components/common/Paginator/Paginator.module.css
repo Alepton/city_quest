@@ -1,7 +1,14 @@
-.userPhoto {
-  width: 100px;
+
+.paginator {
+  margin: 10px;
 }
 
-.selectedPage {
-  font-weight: 900;
+.pageNumber {
+  padding: 2px;
+  border: 1px solid gray;
+}
+
+.pageNumber.selectedPage {
+  font-weight: bold;
+  border-color: black;
 }
