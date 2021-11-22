@@ -4,9 +4,15 @@ import c from "./ProfileInfo.module.css";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userPhoto from "../../../asserts/images/ava1.png";
 
-const ProfileInfo = ({profile, status, updateStatus}) => {
+const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}) => {
   if (!profile) {
     return <Preloader />;
+  }
+
+  const onMainPhotoSelected = (e) => {
+    if (e.target.files && e.target.files.length) {
+      savePhoto(e.target.files[0]);
+    }
   }
 
   return (
@@ -16,7 +22,8 @@ const ProfileInfo = ({profile, status, updateStatus}) => {
         </div>
 
         <div className={c.discriptionBlock}>
-          <img src={profile.photos.large || userPhoto} />
+          <img src={profile.photos.large || userPhoto} className={c.mainPhoto} />
+          { isOwner && <input type={"file"} onChange={onMainPhotoSelected} /> }
           <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
         </div>
     </div>
