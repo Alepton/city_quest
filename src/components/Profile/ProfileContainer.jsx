@@ -1,13 +1,8 @@
 import React from "react";
-import axios from 'axios';
 import { connect } from "react-redux";
-import MyPosts from "./MyPosts/MyPosts";
-import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import Profile from "./Profile";
-import c from "./Profile.module.css";
-import { getUsersProfile, getStatus, updateStatus, savePhoto } from "../../redux/profile-reducer";
-import { Redirect, withRouter } from "react-router";
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { getUsersProfile, getStatus, updateStatus, savePhoto, saveProfile } from "../../redux/profile-reducer";
+import { withRouter } from "react-router";
 import { compose } from "redux";
 
 
@@ -65,7 +60,7 @@ export default connect (mapStateToProps, {getUsersProfile}) (WithUrlDataConteine
 
 //стало
 export default compose(
-  connect (mapStateToProps, {getUsersProfile, getStatus, updateStatus, savePhoto }),
+  connect (mapStateToProps, {getUsersProfile, getStatus, updateStatus, savePhoto, saveProfile }),
   withRouter,
   //withAuthRedirect
 )(ProfileContainer);

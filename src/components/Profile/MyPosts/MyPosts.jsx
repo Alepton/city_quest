@@ -47,7 +47,7 @@ class MyPosts extends Component {
   */
 
     let postsElement = props.posts.map((p) => (
-      <Post message={p.message} likesCount={p.likesCount} />
+      <Post key={p.id} message={p.message} likesCount={p.likesCount} />
     ));
 
     let newPostEl = React.createRef();
