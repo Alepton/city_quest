@@ -18,28 +18,34 @@ import { withSuspense } from "./hoc/withSuspense";
 //import DialogsContainer from "./components/Dialogs/DialogsContainer";
 //import ProfileContainer from "./components/Profile/ProfileContainer";
 //меням на lazy загрузку:
-const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
-const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
+const DialogsContainer = React.lazy(() =>
+  import("./components/Dialogs/DialogsContainer")
+);
+const ProfileContainer = React.lazy(() =>
+  import("./components/Profile/ProfileContainer")
+);
 
 class App extends Component {
-
   catchAllUnhandledErrors = (promiseRejectionEvent) => {
     alert("Some error");
     //console.error(promiseRejectionEvent)
-  }
+  };
 
   componentDidMount() {
-    this.props.initializeApp ();
-    window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors)
+    this.props.initializeApp();
+    window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors)
+    window.removeEventListener(
+      "unhandledrejection",
+      this.catchAllUnhandledErrors
+    );
   }
 
   render() {
     if (!this.props.initialized) {
-      return <Preloader/>
+      return <Preloader />;
     }
 
     return (
@@ -48,15 +54,21 @@ class App extends Component {
         <Navbar />
         <div className="app-wrapper-content">
           <Switch>
-            <Route exact path="/" render={ () => <Redirect to={"/profile"} /> } />
-            <Route path="/profile/:userId?" render={ withSuspense(ProfileContainer)} />
-            <Route path="/dialogs" render={ withSuspense(DialogsContainer)} />
+            <Route exact path="/" render={() => <Redirect to={"/profile"} />} />
+            <Route
+              path="/profile/:userId?"
+              render={withSuspense(ProfileContainer)}
+            />
+            <Route path="/dialogs" render={withSuspense(DialogsContainer)} />
             <Route path="/news" render={() => <News />} />
             <Route path="/music" render={() => <Music />} />
             <Route path="/settings" render={() => <Settings />} />
-            <Route path="/users" render={() => <UsersContainer />} />
+            <Route
+              path="/users"
+              render={() => <UsersContainer pageTitle={"Самураи"} />}
+            />
             <Route path="/login" render={() => <LoginPage />} />
-            <Route path="*" render={() => <div>404 NOT FOUND</div> } />
+            <Route path="*" render={() => <div>404 NOT FOUND</div>} />
           </Switch>
         </div>
       </div>
@@ -65,10 +77,10 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  initialized: state.app.initialized
-})
+  initialized: state.app.initialized,
+});
 
-export default compose (
+export default compose(
   withRouter,
-  connect(mapStateToProps, {initializeApp})) (App);
-
+  connect(mapStateToProps, { initializeApp })
+)(App);
